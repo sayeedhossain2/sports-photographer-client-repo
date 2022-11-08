@@ -1,5 +1,7 @@
 import { data } from "autoprefixer";
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import MyReviewList from "./MyReviewList";
 
@@ -28,7 +30,8 @@ const MyReview = () => {
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            alert("user deleted successfully");
+            // alert("user deleted successfully");
+            toast("Review deleted successfully!");
           }
           const remaining = reviewPerson.filter(
             (remainReviewPerson) => remainReviewPerson._id !== reviewsPerson._id

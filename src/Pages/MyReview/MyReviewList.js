@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 const MyReviewList = ({ reviewsPerson, handleDelete }) => {
   //   console.log(reviewsPerson);
@@ -37,6 +38,18 @@ const MyReviewList = ({ reviewsPerson, handleDelete }) => {
         >
           Delete
         </button>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </th>
     </tr>
   );
