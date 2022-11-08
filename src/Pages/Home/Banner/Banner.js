@@ -4,7 +4,10 @@ import img1 from "../../../assets/banner/homebanner.jpg";
 const Banner = () => {
   return (
     <div>
-      <img className="w-full h-[89vh]" src={img1} alt="" />
+      <h1 className="lg:text-6xl font-bold mb-5 text-orange-500">
+        Sports Photoghapher
+      </h1>
+      <img className="w-[90vw] h-[70vh] mx-auto rounded-xl" src={img1} alt="" />
     </div>
   );
 };

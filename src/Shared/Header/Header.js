@@ -1,12 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/logo.jpg";
+import { Link, NavLink } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => {
   const menuItem = (
     <>
       <li className="font-bold text-xl">
-        <Link to="/"> Home</Link>
+        <NavLink to="/"> Home</NavLink>
+      </li>
+      <li className="font-bold text-xl">
+        <NavLink to="/allservice">Allservice</NavLink>
+      </li>
+      <li className="font-bold text-xl">
+        <NavLink to="/login">Login</NavLink>
+      </li>
+      <li className="font-bold text-xl">
+        <NavLink to="/signup">Sign Up</NavLink>
       </li>
     </>
   );
