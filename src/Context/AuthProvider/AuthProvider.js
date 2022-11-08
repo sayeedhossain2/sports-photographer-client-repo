@@ -1,6 +1,13 @@
-import React, { createContext, useState } from "react";
-import { getAuth } from "firebase/auth";
+import React, { createContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import app from "../../firebase/firebase.config";
+import { current } from "daisyui/src/colors";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -8,12 +15,41 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const authItem = {
+
+  // 1. create user
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // 2. userLogin
+  const login = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // 3. google login
+  const userLoginGoogle = (provider) => {
+    return signInWithPopup(auth, provider);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const authInfo = {
     user,
     loading,
+    createUser,
+    login,
+    userLoginGoogle,
   };
   return (
-    <AuthContext.Provider value={authItem}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 

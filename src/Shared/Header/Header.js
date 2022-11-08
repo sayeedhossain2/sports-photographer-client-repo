@@ -17,6 +17,9 @@ const Header = () => {
       <li className="font-bold text-xl">
         <NavLink to="/signup">Sign Up</NavLink>
       </li>
+      <li className="font-bold text-xl">
+        <NavLink to="/">Log Out</NavLink>
+      </li>
     </>
   );
 
