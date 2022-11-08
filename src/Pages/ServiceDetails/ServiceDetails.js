@@ -5,7 +5,7 @@ const ServiceDetails = () => {
   const ServiceDetails = useLoaderData();
   return (
     <div className="w-full flex mt-10 justify-center">
-      <div className=" m-5 card w-10/12 bg-base-100 shadow-xl">
+      <div className=" m-5 card w-2/4 bg-base-100 shadow-xl">
         <div className="flex justify-center">
           <img className="  rounded-xl" src={ServiceDetails.img} alt="" />
         </div>
