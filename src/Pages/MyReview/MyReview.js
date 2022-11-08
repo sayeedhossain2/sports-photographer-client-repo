@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import MyReviewList from "./MyReviewList";
@@ -5,6 +6,7 @@ import MyReviewList from "./MyReviewList";
 const MyReview = () => {
   const { user } = useContext(AuthContext);
   const [reviewPerson, setReviewPerson] = useState([]);
+
   //   console.log(reviewPerson);
 
   useEffect(() => {
@@ -14,11 +16,26 @@ const MyReview = () => {
   }, [user?.email]);
 
   const handleDelete = (reviewsPerson) => {
-    fetch(`http://localhost:5000/reviewUser/${reviewsPerson._id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    const agree = window.confirm(
+      `Are you sure you want to delete ${reviewsPerson.reviewerName}`
+    );
+
+    if (agree) {
+      fetch(`http://localhost:5000/reviewUser/${reviewsPerson._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert("user deleted successfully");
+          }
+          const remaining = reviewPerson.filter(
+            (remainReviewPerson) => remainReviewPerson._id !== reviewsPerson._id
+          );
+          setReviewPerson(remaining);
+        });
+    }
   };
 
   return (
