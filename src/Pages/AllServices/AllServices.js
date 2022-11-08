@@ -3,7 +3,7 @@ import AllService from "./AllService";
 
 const AllServices = () => {
   const [allpackages, setAllpackages] = useState([]);
-  console.log(allpackages);
+  // console.log(allpackages);
   useEffect(() => {
     fetch("http://localhost:5000/allService")
       .then((res) => res.json())

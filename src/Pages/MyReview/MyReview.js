@@ -13,6 +13,14 @@ const MyReview = () => {
       .then((data) => setReviewPerson(data));
   }, [user?.email]);
 
+  const handleDelete = (reviewsPerson) => {
+    fetch(`http://localhost:5000/reviewUser/${reviewsPerson._id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   return (
     <div>
       <h2>total review {reviewPerson.length}</h2>
@@ -38,6 +46,7 @@ const MyReview = () => {
                 <MyReviewList
                   key={reviewsPerson._id}
                   reviewsPerson={reviewsPerson}
+                  handleDelete={handleDelete}
                 ></MyReviewList>
               ))}
             </tbody>

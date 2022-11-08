@@ -1,8 +1,9 @@
 import React from "react";
 
-const MyReviewList = ({ reviewsPerson }) => {
-  console.log(reviewsPerson);
+const MyReviewList = ({ reviewsPerson, handleDelete }) => {
+  //   console.log(reviewsPerson);
   const { image, email, reviewerName, photoCategory, message } = reviewsPerson;
+
   return (
     <tr>
       <th>
@@ -19,20 +20,23 @@ const MyReviewList = ({ reviewsPerson }) => {
           </div>
           <div>
             <div className="font-bold">{photoCategory}</div>
-            {/* <div className="text-sm opacity-50">Brazil</div> */}
           </div>
         </div>
       </td>
       <td>
         {message}
         <br />
-        {/* <span className="badge badge-ghost badge-sm">
-          Community Outreach Specialist
-        </span> */}
       </td>
-      <td>{email}</td>
       <th>
-        <button className="btn btn-outline btn-warning">Delete</button>
+        <button className="btn btn-outline btn-warning">Update</button>
+      </th>
+      <th>
+        <button
+          onClick={() => handleDelete(reviewsPerson)}
+          className="btn btn-outline btn-warning"
+        >
+          Delete
+        </button>
       </th>
     </tr>
   );

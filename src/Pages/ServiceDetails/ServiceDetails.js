@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import ServiceDetailsTable from "./ServiceDetailsTable";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
@@ -69,16 +70,16 @@ const ServiceDetails = () => {
       </div>
 
       {/* review section */}
-      <div className="my-28 grid md:grid-cols-[3fr_2fr]">
+      <div className="my-28 grid md:grid-cols-[1fr_2fr]">
         {/* review form start */}
         <div>
           {user?.email ? (
             <form onSubmit={handleReview}>
-              <h1 className="text-5xl font-bold mb-10 text-indigo-800">
+              <h1 className="text-3xl font-bold mb-10 text-indigo-800">
                 {ServiceDetails.name} <br /> Photography Review
               </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 mx-20  gap-5">
+              <div className="grid grid-cols-1 mx-20  gap-5">
                 <input
                   type="text"
                   name="name"
@@ -107,7 +108,7 @@ const ServiceDetails = () => {
                 />
               </div>
               <textarea
-                className="textarea textarea-bordered h-24 w-[75vw] lg:w-[48vw] mt-3"
+                className="textarea textarea-bordered h-24 w-[75vw] lg:w-[22vw] mt-3"
                 placeholder="Your Review Details"
                 name="message"
               ></textarea>
@@ -130,9 +131,33 @@ const ServiceDetails = () => {
         {/* review form end */}
 
         {/* review data start */}
-        <div className="mt-20 md:mt-5">
-          <h2>this is review</h2>
-          <h2>Total Review {reviews.length}</h2>
+        <div className="mt-20 md:mt-24">
+          <h2 className="text-5xl font-bold mb-10">
+            Total Review {reviews.length}
+          </h2>
+
+          <div>
+            <div className="overflow-x-auto w-full">
+              <table className="table w-full">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Job</th>
+                    <th>Favorite Color</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reviews.map((reviewTable) => (
+                    <ServiceDetailsTable
+                      key={reviewTable._id}
+                      reviewTable={reviewTable}
+                    ></ServiceDetailsTable>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         {/* review data end */}
       </div>
