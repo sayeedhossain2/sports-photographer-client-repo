@@ -1,25 +1,41 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import "./Header.css";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+// import "./Header.css";
 
 const Header = () => {
+  const { userLogOut, user } = useContext(AuthContext);
+
+  const handlelogout = () => {
+    userLogOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+
   const menuItem = (
     <>
       <li className="font-bold text-xl">
-        <NavLink to="/"> Home</NavLink>
+        <Link to="/"> Home</Link>
       </li>
       <li className="font-bold text-xl">
-        <NavLink to="/allservice">Allservice</NavLink>
+        <Link to="/allservice">Allservice</Link>
       </li>
-      <li className="font-bold text-xl">
-        <NavLink to="/login">Login</NavLink>
-      </li>
-      <li className="font-bold text-xl">
-        <NavLink to="/signup">Sign Up</NavLink>
-      </li>
-      <li className="font-bold text-xl">
-        <NavLink to="/">Log Out</NavLink>
-      </li>
+
+      {/* conditional rendaring */}
+      {user?.email ? (
+        <li onClick={handlelogout} className="font-bold text-xl">
+          <Link to="/">Log Out</Link>
+        </li>
+      ) : (
+        <>
+          <li className="font-bold text-xl">
+            <Link to="/login">Login</Link>
+          </li>
+          <li className="font-bold text-xl">
+            <Link to="/signup">Sign Up</Link>
+          </li>
+        </>
+      )}
     </>
   );
 

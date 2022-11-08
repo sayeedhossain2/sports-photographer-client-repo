@@ -5,9 +5,9 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
-import { current } from "daisyui/src/colors";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -30,7 +30,14 @@ const AuthProvider = ({ children }) => {
 
   // 3. google login
   const userLoginGoogle = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
+  };
+
+  // 4. logout
+  const userLogOut = () => {
+    setLoading(true);
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -47,6 +54,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     login,
     userLoginGoogle,
+    userLogOut,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

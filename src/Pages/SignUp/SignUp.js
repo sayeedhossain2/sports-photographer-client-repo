@@ -2,11 +2,14 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, userLoginGoogle } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [successfully, setSuccessfully] = useState("");
+
+  const googleProvider = new GoogleAuthProvider();
 
   const handleUserSignUp = (event) => {
     event.preventDefault();
@@ -26,6 +29,25 @@ const SignUp = () => {
         const errorMessage = error.message;
         setSuccessfully("");
         setError(errorMessage);
+      });
+  };
+
+  const handleWithGoogle = () => {
+    userLoginGoogle(googleProvider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log(user);
+        setError("");
+        setSuccessfully("User Created Successfully");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        setError(errorMessage);
+        setSuccessfully("");
       });
   };
 
@@ -62,7 +84,6 @@ const SignUp = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
-                required
               />
             </div>
             <div className="form-control">
@@ -74,7 +95,6 @@ const SignUp = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
-                required
               />
 
               <p className="font-bold  text-red-500">{error}</p>
@@ -93,10 +113,15 @@ const SignUp = () => {
                 Login
               </Link>
             </p>
-            <button className="btn btn-sm btn-outline btn-warning">
+          </form>
+          <div className="-mt-5 mb-5">
+            <button
+              onClick={handleWithGoogle}
+              className=" btn btn-sm btn-outline btn-warning"
+            >
               <FaGoogle /> <span className="ml-3">login via google</span>
             </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>
