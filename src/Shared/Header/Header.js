@@ -23,9 +23,14 @@ const Header = () => {
 
       {/* conditional rendaring */}
       {user?.email ? (
-        <li onClick={handlelogout} className="font-bold text-xl">
-          <Link to="/">Log Out</Link>
-        </li>
+        <>
+          <li className="font-bold text-xl">
+            <Link to="/myreview">My Review</Link>
+          </li>
+          <li onClick={handlelogout} className="font-bold text-xl">
+            <Link to="/">Log Out</Link>
+          </li>
+        </>
       ) : (
         <>
           <li className="font-bold text-xl">

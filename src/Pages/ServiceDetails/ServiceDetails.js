@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   const ServiceDetails = useLoaderData();
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/allReview")
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, []);
 
   const handleReview = (event) => {
     event.preventDefault();
@@ -18,13 +25,26 @@ const ServiceDetails = () => {
     const review = {
       service: ServiceDetails._id,
       photoCategory: ServiceDetails.name,
-      name: name,
+      reviewerName: name,
       email: email,
       image: image,
       rating: rating,
       message: message,
     };
-    console.log(review);
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        form.reset();
+        alert("Review send Successfully");
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -49,54 +69,79 @@ const ServiceDetails = () => {
       </div>
 
       {/* review section */}
-      <div className="my-10">
-        <form onSubmit={handleReview}>
-          <h1 className="text-5xl font-bold mb-10 text-indigo-800">
-            {ServiceDetails.name} <br /> Photography Review
-          </h1>
+      <div className="my-28 grid md:grid-cols-[3fr_2fr]">
+        {/* review form start */}
+        <div>
+          {user?.email ? (
+            <form onSubmit={handleReview}>
+              <h1 className="text-5xl font-bold mb-10 text-indigo-800">
+                {ServiceDetails.name} <br /> Photography Review
+              </h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 mx-20  gap-5">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              className="input input-bordered  input-ghost w-full "
-            />
-            <input
-              type="text"
-              name="email"
-              placeholder=" Your Email"
-              defaultValue={user?.email}
-              readOnly
-              className="input input-bordered  input-ghost w-full "
-            />
-            <input
-              type="text"
-              name="image"
-              placeholder="Your Image"
-              className="input input-bordered  input-ghost w-full "
-            />
-            <input
-              type="text"
-              name="rating"
-              placeholder="Ratings"
-              className="input input-bordered  input-ghost w-full "
-            />
-          </div>
-          <textarea
-            className="textarea textarea-bordered h-24 w-[88vw] mt-3"
-            placeholder="Your Review Details"
-            name="message"
-          ></textarea>
-          <input
-            className="btn btn-outline btn-warning"
-            type="submit"
-            value="Review Placed Successfully"
-          />
-        </form>
+              <div className="grid grid-cols-1 md:grid-cols-2 mx-20  gap-5">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  className="input input-bordered  input-ghost w-full "
+                />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder=" Your Email"
+                  defaultValue={user?.email}
+                  readOnly
+                  className="input input-bordered  input-ghost w-full "
+                />
+                <input
+                  type="text"
+                  name="image"
+                  placeholder="Your Image"
+                  className="input input-bordered  input-ghost w-full "
+                />
+                <input
+                  type="text"
+                  name="rating"
+                  placeholder="Ratings"
+                  className="input input-bordered  input-ghost w-full "
+                />
+              </div>
+              <textarea
+                className="textarea textarea-bordered h-24 w-[75vw] lg:w-[48vw] mt-3"
+                placeholder="Your Review Details"
+                name="message"
+              ></textarea>
+              <input
+                className="btn btn-outline btn-warning"
+                type="submit"
+                value="Review Placed Successfully"
+              />
+            </form>
+          ) : (
+            <span className="text-4xl md:mt-16 btn btn-outline btn-warning">
+              <Link to="/login">
+                <button className="btn btn-active btn-link text-3xl">
+                  Please Login to add a Review
+                </button>
+              </Link>
+            </span>
+          )}
+        </div>
+        {/* review form end */}
+
+        {/* review data start */}
+        <div className="mt-20 md:mt-5">
+          <h2>this is review</h2>
+          <h2>Total Review {reviews.length}</h2>
+        </div>
+        {/* review data end */}
       </div>
     </div>
   );
 };
 
 export default ServiceDetails;
+
+/*  <h2>
+              Please <Link to="/login">Login</Link> to add a Review
+            </h2> */
