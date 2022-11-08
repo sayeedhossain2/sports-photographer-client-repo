@@ -3,6 +3,7 @@ import Main from "../../Layout/Main";
 import AllServices from "../../Pages/AllServices/AllServices";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
+import ServiceDetails from "../../Pages/ServiceDetails/ServiceDetails";
 import SignUp from "../../Pages/SignUp/SignUp";
 
 const router = createBrowserRouter([
@@ -25,6 +26,17 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/singleService/:id",
+        element: <ServiceDetails></ServiceDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/singleService/${params.id}`),
+        //     http://localhost:5000/singleService/6369a2a9a5739a477fea3abc
+      },
+      {
+        path: "*",
+        element: <h2>this page is not found 404</h2>,
       },
     ],
   },

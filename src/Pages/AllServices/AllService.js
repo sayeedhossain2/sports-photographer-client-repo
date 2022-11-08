@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AllService = ({ allpackage }) => {
-  const { img, name, price, ratings, description } = allpackage;
+  const { img, name, price, ratings, description, _id } = allpackage;
   return (
     <div className=" m-5 card w-96 bg-base-100 shadow-xl ">
       <figure>
@@ -17,7 +18,9 @@ const AllService = ({ allpackage }) => {
 
         <p>{description.slice(0, 100) + "....."}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">View Details</button>
+          <Link to={`/singleService/${_id}`}>
+            <button className="btn btn-primary">View Details</button>
+          </Link>
         </div>
       </div>
     </div>
