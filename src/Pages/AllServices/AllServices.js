@@ -11,7 +11,7 @@ const AllServices = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid lg:grid-cols-3 flex justify-center mt-10">
       {allpackages.map((allpackage) => (
         <AllService key={allpackage._id} allpackage={allpackage}></AllService>
       ))}

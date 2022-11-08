@@ -1,17 +1,23 @@
 import React from "react";
 
 const AllService = ({ allpackage }) => {
-  const { img, name, price, ratings, view, _id } = allpackage;
+  const { img, name, price, ratings, description } = allpackage;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl ">
+    <div className=" m-5 card w-96 bg-base-100 shadow-xl ">
       <figure>
-        <img src={img} alt="Shoes" />
+        <img className="lg:h-56 rounded-xl" src={img} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+
+        <div className="flex">
+          <p className="font-bold">Rating: {ratings}</p>
+          <p className="font-bold">Price: ${price}</p>
+        </div>
+
+        <p>{description.slice(0, 100) + "....."}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          <button className="btn btn-primary">View Details</button>
         </div>
       </div>
     </div>
