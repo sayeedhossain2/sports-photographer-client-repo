@@ -8,7 +8,7 @@ const Service = () => {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allService")
+    fetch("http://localhost:5000/service")
       .then((res) => res.json())
       .then((data) => setPackages(data));
   }, []);
@@ -17,7 +17,7 @@ const Service = () => {
     <div className="flex  justify-center mt-10">
       <div>
         <div className=" grid lg:grid-cols-3">
-          {packages.slice(0, 3).map((singlePackage) => (
+          {packages.map((singlePackage) => (
             <SingleService
               key={singlePackage._id}
               singlePackage={singlePackage}

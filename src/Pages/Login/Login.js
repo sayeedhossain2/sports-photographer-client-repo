@@ -23,7 +23,7 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setSuccessfully("");
-        setError("errorMessage");
+        setError(errorMessage);
       });
   };
 
