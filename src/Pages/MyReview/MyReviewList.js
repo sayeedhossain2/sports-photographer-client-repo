@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import useTitle from "../../hooks/useTitle";
+import UpdatePage from "../UpdatePage/UpdatePage";
 
 const MyReviewList = ({ reviewsPerson, handleDelete }) => {
   //   console.log(reviewsPerson);
@@ -17,7 +19,15 @@ const MyReviewList = ({ reviewsPerson, handleDelete }) => {
           <p className="text-left text-xl font-bold">User: {email}</p>
           <p>{message}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-outline btn-warning">Update</button>
+            <Link to="/updatepage">
+              <button
+                onClick={reviewsPerson}
+                className="btn btn-outline btn-warning"
+              >
+                Update
+              </button>
+            </Link>
+
             <button
               onClick={() => handleDelete(reviewsPerson)}
               className="btn btn-outline btn-warning"

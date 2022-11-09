@@ -4,9 +4,10 @@ import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 import useTitle from "../../hooks/useTitle";
+import { Dna } from "react-loader-spinner";
 
 const SignUp = () => {
-  const { createUser, userLoginGoogle } = useContext(AuthContext);
+  const { createUser, userLoginGoogle, loading } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [successfully, setSuccessfully] = useState("");
 
@@ -52,6 +53,20 @@ const SignUp = () => {
       });
   };
   useTitle("SignUp");
+  if (loading) {
+    return (
+      <h2 className=" flex justify-center items-center">
+        <Dna
+          visible={true}
+          height="200"
+          width="280"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper"
+        />
+      </h2>
+    );
+  }
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
