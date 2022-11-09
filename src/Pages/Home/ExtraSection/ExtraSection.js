@@ -1,8 +1,10 @@
 import React from "react";
 import img2 from "../../../assets/home/img2.jpg";
 import img3 from "../../../assets/home/img3.jpeg";
+import useTitle from "../../../hooks/useTitle";
 
 const ExtraSection = () => {
+  useTitle("ExtraSection");
   return (
     <div className="my-10">
       <div className=" md:w-[92vw] mx-auto rounded-xl  flex justify-center items-center gap-5 grid md:grid-cols-[2fr_3fr] mt-10 bg-red-200 p-10">

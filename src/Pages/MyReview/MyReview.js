@@ -3,11 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import MyReviewList from "./MyReviewList";
 
 const MyReview = () => {
   const { user } = useContext(AuthContext);
   const [reviewPerson, setReviewPerson] = useState([]);
+  useTitle("MyReview");
 
   //   console.log(reviewPerson);
 
@@ -41,6 +43,7 @@ const MyReview = () => {
     }
   };
 
+  useTitle("MyReview");
   return (
     <div>
       <h2>total review {reviewPerson.length}</h2>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import ServiceDetailsTable from "./ServiceDetailsTable";
 
 const ServiceDetails = () => {
@@ -47,6 +48,7 @@ const ServiceDetails = () => {
       })
       .catch((err) => console.error(err));
   };
+  useTitle("ServiceDetails");
 
   return (
     <div>
@@ -70,9 +72,9 @@ const ServiceDetails = () => {
       </div>
 
       {/* review section */}
-      <div className="my-28 grid md:grid-cols-[1fr_2fr]">
+      <div className="my-28 grid gap-20 md:grid-cols-[1fr_2fr] mx-20">
         {/* review form start */}
-        <div>
+        <div className="bg-red-200 p-5 rounded-xl">
           {user?.email ? (
             <form onSubmit={handleReview}>
               <h1 className="text-3xl font-bold mb-10 text-indigo-800">
@@ -119,7 +121,7 @@ const ServiceDetails = () => {
               />
             </form>
           ) : (
-            <span className="text-4xl md:mt-16 btn btn-outline btn-warning">
+            <span className="text-4xl md:mt-20 btn btn-outline btn-warning">
               <Link to="/login">
                 <button className="btn btn-active btn-link text-3xl">
                   Please Login to add a Review
@@ -131,7 +133,7 @@ const ServiceDetails = () => {
         {/* review form end */}
 
         {/* review data start */}
-        <div className="mt-20 md:mt-0 ">
+        <div className="mt-20 md:mt-0 bg-red-200 p-5 rounded-xl ">
           <h2 className="text-5xl font-bold mb-10">
             Total Review {reviews.length}
           </h2>

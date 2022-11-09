@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 // import "./Header.css";
 import img4 from "../../assets/favicon/img4.png";
+import useTitle from "../../hooks/useTitle";
 
 const Header = () => {
   const { userLogOut, user } = useContext(AuthContext);
@@ -19,6 +20,9 @@ const Header = () => {
         <Link to="/"> Home</Link>
       </li>
       <li className="font-bold text-xl">
+        <Link to="/blog">Bolg</Link>
+      </li>
+      <li className="font-bold text-xl">
         <Link to="/allservice">All Service</Link>
       </li>
 
@@ -26,10 +30,10 @@ const Header = () => {
       {user?.email ? (
         <>
           <li className="font-bold text-xl">
-            <Link to="/myreview">My Review</Link>
+            <Link to="/addservice">Add Service</Link>
           </li>
           <li className="font-bold text-xl">
-            <Link to="/addservice">Add Service</Link>
+            <Link to="/myreview">My Review</Link>
           </li>
           <li onClick={handlelogout} className="font-bold text-xl">
             <Link to="/">Log Out</Link>
@@ -48,6 +52,7 @@ const Header = () => {
     </>
   );
 
+  useTitle("Header");
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">

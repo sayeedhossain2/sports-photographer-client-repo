@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import useTitle from "../../hooks/useTitle";
 
 const SignUp = () => {
   const { createUser, userLoginGoogle } = useContext(AuthContext);
@@ -50,7 +51,7 @@ const SignUp = () => {
         setSuccessfully("");
       });
   };
-
+  useTitle("SignUp");
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">

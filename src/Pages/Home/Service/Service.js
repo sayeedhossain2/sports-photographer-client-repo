@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../../hooks/useTitle";
 import AllServices from "../../AllServices/AllServices";
 
 import SingleService from "../SingleService/SingleService";
@@ -13,6 +14,7 @@ const Service = () => {
       .then((data) => setPackages(data));
   }, []);
 
+  useTitle("Service");
   return (
     <div className="flex  justify-center mt-10">
       <div>

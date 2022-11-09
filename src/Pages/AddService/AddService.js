@@ -1,7 +1,9 @@
 import React from "react";
 import { toast, ToastContainer } from "react-toastify";
+import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
+  useTitle("AddService");
   const handleAdService = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -35,21 +37,6 @@ const AddService = () => {
         form.reset();
         // alert("Add Service added Successfully");
         toast("Add Service added Successfully!");
-
-        /* 
-        <ToastContainer
-position="top-center"
-autoClose={3000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
-/>
-        */
       })
       .catch((err) => console.error(err));
   };

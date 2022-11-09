@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../../hooks/useTitle";
 
 const SingleService = ({ singlePackage }) => {
   //   console.log(singlePackage);
   const { img, name, price, ratings, description, _id } = singlePackage;
+  useTitle("Home");
   return (
     <div className=" m-5 card w-96 bg-base-100 shadow-xl">
       <figure>

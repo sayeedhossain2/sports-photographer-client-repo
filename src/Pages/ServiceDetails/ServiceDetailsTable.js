@@ -1,7 +1,9 @@
 import React from "react";
+import useTitle from "../../hooks/useTitle";
 
 const ServiceDetailsTable = ({ reviewTable }) => {
   const { image, email, photoCategory, message } = reviewTable;
+  useTitle("ServiceDetailsTable");
   return (
     <div>
       <div className="card card-compact w-full gap-5 bg-base-100 shadow-xl mb-5">

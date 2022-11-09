@@ -2,10 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import useTitle from "../../hooks/useTitle";
 
 const AllService = ({ allpackage }) => {
   const { img, name, price, ratings, description, _id } = allpackage;
   const imgs = [img];
+  useTitle("AllService");
   return (
     <PhotoProvider>
       <div className=" m-5 card w-96 bg-base-100 shadow-xl ">

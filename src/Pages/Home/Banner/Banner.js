@@ -1,7 +1,9 @@
 import React from "react";
 import img1 from "../../../assets/banner/homebanner.jpg";
+import useTitle from "../../../hooks/useTitle";
 
 const Banner = () => {
+  useTitle(Banner);
   return (
     <div>
       <h1 className=" text-3xl lg:text-6xl font-bold mb-10 text-teal-800">
