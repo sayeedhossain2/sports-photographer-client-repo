@@ -1,15 +1,31 @@
 import React, { useContext, useState } from "react";
+import { Dna, Vortex } from "react-loader-spinner";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, loading } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [successfully, setSuccessfully] = useState("");
   useTitle("Login");
   const navigate = useNavigate();
   const location = useLocation();
+
+  if (loading) {
+    return (
+      <h2 className=" flex justify-center items-center">
+        <Dna
+          visible={true}
+          height="200"
+          width="280"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper"
+        />
+      </h2>
+    );
+  }
 
   const from = location.state?.from?.pathname || "/";
 
@@ -33,7 +49,15 @@ const Login = () => {
         setError(errorMessage);
       });
   };
-
+  <Vortex
+    visible={true}
+    height="120"
+    width="120"
+    ariaLabel="vortex-loading"
+    wrapperStyle={{}}
+    wrapperClass="vortex-wrapper"
+    colors={["red", "green", "blue", "yellow", "orange", "purple"]}
+  />;
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -94,3 +118,9 @@ const Login = () => {
 };
 
 export default Login;
+
+/* 
+
+
+
+*/

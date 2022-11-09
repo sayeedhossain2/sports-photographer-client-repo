@@ -35,8 +35,7 @@ const AddService = () => {
       .then((data) => {
         console.log(data);
         form.reset();
-        // alert("Add Service added Successfully");
-        toast("Add Service added Successfully!");
+        toast("Service added Successfully!");
       })
       .catch((err) => console.error(err));
   };

@@ -40,20 +40,3 @@ const AllService = ({ allpackage }) => {
 };
 
 export default AllService;
-
-/* 
-
-export default function MyComponent() {
-  return (
-    <PhotoProvider>
-      <div className="foo">
-        {images.map((item, index) => (
-          <PhotoView key={index} src={item}>
-            <img src={item} alt="" />
-          </PhotoView>
-        ))}
-      </div>
-    </PhotoProvider>
-  );
-}
-*/
