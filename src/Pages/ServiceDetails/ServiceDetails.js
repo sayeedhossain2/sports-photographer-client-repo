@@ -12,7 +12,7 @@ const ServiceDetails = () => {
     fetch("http://localhost:5000/allReview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
-  }, []);
+  }, [reviews]);
 
   const handleReview = (event) => {
     event.preventDefault();
