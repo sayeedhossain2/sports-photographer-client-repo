@@ -1,4 +1,5 @@
 import React from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddService = () => {
   const handleAdService = (event) => {
@@ -10,6 +11,47 @@ const AddService = () => {
     const price = form.price.value;
     const view = form.view.value;
     const rating = form.rating.value;
+
+    // make object which data i am sending from client side
+    const newService = {
+      name: name,
+      description: description,
+      price: price,
+      ratings: rating,
+      view: view,
+      img: image,
+    };
+    //  emplement Post method and data data send backend
+    fetch("http://localhost:5000/AddService", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newService),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        form.reset();
+        // alert("Add Service added Successfully");
+        toast("Add Service added Successfully!");
+
+        /* 
+        <ToastContainer
+position="top-center"
+autoClose={3000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
+        */
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -17,8 +59,8 @@ const AddService = () => {
       <h2>this is add service</h2>
 
       {/*  input div start */}
-      <div onSubmit={handleAdService}>
-        <div className="grid md:grid-cols-2 my-20 mx-20  gap-5">
+      <form onSubmit={handleAdService} className="my-20">
+        <div className="grid md:grid-cols-2 mb-5 mx-20  gap-5">
           <input
             type="text"
             name="name"
@@ -35,7 +77,7 @@ const AddService = () => {
 
           <input
             type="text"
-            name=" description"
+            name="description"
             placeholder=" description"
             className="input input-bordered  input-ghost w-full "
           />
@@ -59,7 +101,24 @@ const AddService = () => {
             className="input input-bordered  input-ghost w-full "
           />
         </div>
-      </div>
+        <input
+          className="btn btn-outline btn-warning"
+          type="submit"
+          value="Add Service Placed"
+        />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </form>
     </div>
   );
 };
