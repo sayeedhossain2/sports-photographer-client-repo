@@ -24,7 +24,10 @@ const ServiceDetails = () => {
     const rating = form.rating.value;
     const message = form.message.value;
 
+    const date = Date.now();
+
     const review = {
+      date: date,
       service: ServiceDetails._id,
       photoCategory: ServiceDetails.name,
       reviewerName: name,
@@ -33,6 +36,7 @@ const ServiceDetails = () => {
       rating: rating,
       message: message,
     };
+    console.log(review);
     fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {

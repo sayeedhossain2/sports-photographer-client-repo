@@ -6,26 +6,31 @@ import UpdatePage from "../UpdatePage/UpdatePage";
 
 const MyReviewList = ({ reviewsPerson, handleDelete }) => {
   //   console.log(reviewsPerson);
-  const { image, email, reviewerName, photoCategory, message } = reviewsPerson;
+  const { _id, image, email, reviewerName, photoCategory, message } =
+    reviewsPerson;
   useTitle("MyReviewList");
   return (
     <div>
       <div className="card card-compact w-full gap-5 bg-base-100 shadow-xl mb-5">
         <figure>
-          <img src={image} alt="" />
+          <img
+            style={{
+              width: "320px",
+              height: "250px",
+              objectFit: "cover",
+              borderRadius: "15px",
+            }}
+            src={image}
+            alt=""
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{photoCategory}</h2>
           <p className="text-left text-xl font-bold">User: {email}</p>
           <p>{message}</p>
           <div className="card-actions justify-end">
-            <Link to="/updatepage">
-              <button
-                onClick={reviewsPerson}
-                className="btn btn-outline btn-warning"
-              >
-                Update
-              </button>
+            <Link to={`/updatepage/${_id}`}>
+              <button className="btn btn-outline btn-warning">Update</button>
             </Link>
 
             <button

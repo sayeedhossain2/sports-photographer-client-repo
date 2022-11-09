@@ -26,14 +26,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/allservice",
-        element: <AllServices></AllServices>,
+        element: (
+          <PrivateRoute>
+            <AllServices></AllServices>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myreview",
         element: <MyReview></MyReview>,
       },
       {
-        path: "/updatepage",
+        path: "/updatepage/:id",
         element: <UpdatePage></UpdatePage>,
       },
       {

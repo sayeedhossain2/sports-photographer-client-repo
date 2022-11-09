@@ -14,7 +14,16 @@ const AllService = ({ allpackage }) => {
         <figure>
           {imgs.map((item, index) => (
             <PhotoView key={index} src={img}>
-              <img src={item} alt="" />
+              <img
+                style={{
+                  width: "320px",
+                  height: "250px",
+                  objectFit: "cover",
+                  borderRadius: "15px",
+                }}
+                src={item}
+                alt=""
+              />
             </PhotoView>
           ))}
           {/* <img className="lg:h-56 rounded-xl" src={img} alt="Shoes" /> */}

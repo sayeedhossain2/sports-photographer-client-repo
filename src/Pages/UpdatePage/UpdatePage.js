@@ -1,7 +1,9 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
-const UpdatePage = ({ reviewsPerson }) => {
-  console.log(reviewsPerson);
+const UpdatePage = () => {
+  const { id } = useParams();
+  console.log(id);
 
   const handleAdService = (event) => {
     event.preventDefault();
