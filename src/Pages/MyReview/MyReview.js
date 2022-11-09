@@ -47,18 +47,27 @@ const MyReview = () => {
 
       <div>
         <div className="overflow-x-auto w-full">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Review</th>
-                <th>User Email</th>
+          {reviewPerson.length == 0 ? (
+            <h1 className="text-3xl md:text-5xl my-20 font-bold text-red-600">
+              No Review Were Added
+            </h1>
+          ) : (
+            // <table className="table w-full">
+            //   <thead>
+            //     <tr>
+            //       <th>Name</th>
+            //       <th>Review</th>
+            //       <th>User Email</th>
 
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
+            //       <th>Update</th>
+            //       <th>Delete</th>
+            //     </tr>
+            //   </thead>
+            //   <tbody>
+
+            //   </tbody>
+            // </table>
+            <div className="grid md:grid-cols-3 mx-20 flex justify-center gap-5">
               {reviewPerson.map((reviewsPerson) => (
                 <MyReviewList
                   key={reviewsPerson._id}
@@ -66,8 +75,8 @@ const MyReview = () => {
                   handleDelete={handleDelete}
                 ></MyReviewList>
               ))}
-            </tbody>
-          </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

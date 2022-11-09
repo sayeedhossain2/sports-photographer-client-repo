@@ -56,8 +56,6 @@ theme="light"
 
   return (
     <div>
-      <h2>this is add service</h2>
-
       {/*  input div start */}
       <form onSubmit={handleAdService} className="my-20">
         <div className="grid md:grid-cols-2 mb-5 mx-20  gap-5">

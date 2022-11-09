@@ -131,32 +131,18 @@ const ServiceDetails = () => {
         {/* review form end */}
 
         {/* review data start */}
-        <div className="mt-20 md:mt-24">
+        <div className="mt-20 md:mt-0 ">
           <h2 className="text-5xl font-bold mb-10">
             Total Review {reviews.length}
           </h2>
 
-          <div>
-            <div className="overflow-x-auto w-full">
-              <table className="table w-full">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {reviews.map((reviewTable) => (
-                    <ServiceDetailsTable
-                      key={reviewTable._id}
-                      reviewTable={reviewTable}
-                    ></ServiceDetailsTable>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+          <div className="grid md:grid-cols-2 flex justify-center gap-5">
+            {reviews.map((reviewTable) => (
+              <ServiceDetailsTable
+                key={reviewTable._id}
+                reviewTable={reviewTable}
+              ></ServiceDetailsTable>
+            ))}
           </div>
         </div>
         {/* review data end */}
