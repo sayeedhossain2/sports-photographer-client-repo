@@ -50,15 +50,12 @@ const MyReview = () => {
           <table className="table w-full">
             <thead>
               <tr>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
                 <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
-                <th></th>
+                <th>Review</th>
+                <th>User Email</th>
+
+                <th>Update</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>

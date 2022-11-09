@@ -18,7 +18,7 @@ const Header = () => {
         <Link to="/"> Home</Link>
       </li>
       <li className="font-bold text-xl">
-        <Link to="/allservice">Allservice</Link>
+        <Link to="/allservice">All Service</Link>
       </li>
 
       {/* conditional rendaring */}
@@ -26,6 +26,9 @@ const Header = () => {
         <>
           <li className="font-bold text-xl">
             <Link to="/myreview">My Review</Link>
+          </li>
+          <li className="font-bold text-xl">
+            <Link to="/addservice">Add Service</Link>
           </li>
           <li onClick={handlelogout} className="font-bold text-xl">
             <Link to="/">Log Out</Link>
