@@ -7,16 +7,28 @@ import useTitle from "../../hooks/useTitle";
 import MyReviewList from "./MyReviewList";
 
 const MyReview = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [reviewPerson, setReviewPerson] = useState([]);
   useTitle("MyReview");
 
   //   console.log(reviewPerson);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/userReview?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setReviewPerson(data));
+    fetch(`http://localhost:5000/userReview?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("sportsToken")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logout();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        // console.log("recive", data);
+        setReviewPerson(data);
+      });
   }, [user?.email]);
 
   const handleDelete = (reviewsPerson) => {
