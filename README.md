@@ -2,7 +2,7 @@
 
 ## Sports Photographer
 
-## clint side github code link
+## client side github code link
 
 https://github.com/Porgramming-Hero-web-course/b6a11-service-review-client-side-sayeedhossain2
 
