@@ -43,6 +43,26 @@ const SignUp = () => {
         console.log(user);
         setError("");
         setSuccessfully("User Created Successfully");
+
+        const currentUser = {
+          email: user.email,
+        };
+
+        // get jwt token
+        fetch("https://sports-photographer-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            // set the token inside local storage
+            localStorage.setItem("sportsToken", data.token);
+            // navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         const errorCode = error.code;

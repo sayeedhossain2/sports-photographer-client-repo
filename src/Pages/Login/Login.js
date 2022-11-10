@@ -12,6 +12,9 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // userLoginGoogle
+  //  const googleProvider = new GoogleAuthProvider();
+
   if (loading) {
     return (
       <h2 className=" flex justify-center items-center">
@@ -80,6 +83,29 @@ const Login = () => {
     wrapperClass="vortex-wrapper"
     colors={["red", "green", "blue", "yellow", "orange", "purple"]}
   />;
+
+  // login start
+
+  // const handleWithGoogle = () => {
+  //   userLoginGoogle(googleProvider)
+  //     .then((result) => {
+  //       const credential = GoogleAuthProvider.credentialFromResult(result);
+  //       const token = credential.accessToken;
+  //       const user = result.user;
+  //       console.log(user);
+  //       setError("");
+  //       setSuccessfully("User Created Successfully");
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       console.log(errorMessage);
+  //       setError(errorMessage);
+  //       setSuccessfully("");
+  //     });
+  // };
+  // login end
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -126,6 +152,17 @@ const Login = () => {
               </Link>
             </p>
           </form>
+
+          {/* google start */}
+          {/* <div className="-mt-5 mb-5">
+            <button
+              onClick={handleWithGoogle}
+              className=" btn btn-sm btn-outline btn-warning"
+            >
+              <FaGoogle /> <span className="ml-3">login via google</span>
+            </button>
+          </div> */}
+          {/* google end */}
         </div>
       </div>
     </div>
