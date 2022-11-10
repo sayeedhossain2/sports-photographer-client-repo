@@ -1,4 +1,6 @@
-# Sports Photographer
+# Project name
+
+## Sports Photographer
 
 ## clint side github code link
 
@@ -25,7 +27,3 @@ https://sports-photographer-efd3c.web.app/
 * have a section customar review
 * emplement delete and edit option
 * last of jwt emplement
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
