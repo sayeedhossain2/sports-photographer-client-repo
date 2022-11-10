@@ -1,53 +1,85 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const UpdatePage = () => {
-  const { id } = useParams();
-  console.log(id);
+  const storedReviewer = useLoaderData();
 
-  const handleAdService = (event) => {
+  const [update, SetUpdate] = useState({ storedReviewer });
+  //   console.log(storedReviewer);
+
+  const handleUpdateService = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const reviewerName = form.reviewerName.value;
-    const message = form.message.value;
-    const rating = form.rating.value;
+    console.log(update);
+    fetch(`http://localhost:5000/usersReview/${storedReviewer._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(update),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast("Review Updated Succfully!");
+          event.target.reset();
+        }
+      });
+  };
 
-    // console.log(reviewerName, message, rating);
-
-    // fetch (`http://localhost:5000/allReview/${}`)
+  const handleInputBlur = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+    const newReview = { ...update };
+    newReview[field] = value;
+    SetUpdate(newReview);
   };
 
   return (
     <div>
-      <h2>this is update</h2>
+      <h2>this is update {storedReviewer.photoCategory}</h2>
 
       <form
-        onSubmit={handleAdService}
+        onSubmit={handleUpdateService}
         className="my-20 bg-slate-400 p-20 w-3/4 mx-auto rounded-xl"
       >
         <div className="lg:w-2/4 mb-5 mx-auto ">
+          <h1>Rating</h1>
           <input
+            onChange={handleInputBlur}
+            defaultValue={storedReviewer.rating}
             type="text"
-            name="reviewerName"
+            name="rating"
             placeholder="reviewerName"
             className="bg-white input input-bordered  input-ghost w-full mb-5 "
           />
+          <h1>Message</h1>
           <input
+            onChange={handleInputBlur}
+            defaultValue={storedReviewer.message}
             type="text"
             name="message"
             placeholder="message"
             className="bg-white input input-bordered  input-ghost w-full mb-5  "
           />
-          <input
-            type="text"
-            name="rating"
-            placeholder="rating"
-            className=" bg-white input input-bordered  input-ghost w-full "
-          />
+
           <input
             className="btn mt-5 btn-warning"
             type="submit"
-            value="Submit"
+            value="Update Value"
+          />
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
           />
         </div>
       </form>
@@ -56,3 +88,6 @@ const UpdatePage = () => {
 };
 
 export default UpdatePage;
+
+//   const { id } = useParams();
+//   const [reviews, setReviews] = useState({ id });
