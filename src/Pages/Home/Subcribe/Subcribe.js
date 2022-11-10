@@ -7,7 +7,7 @@ const Subcribe = () => {
       <p className="mb-5">
         Subscribe to keep up with Fresh sports image and exciting updates,
         <br />
-        we promise not to span you
+        we promise not to spam you?
       </p>
       <div>
         <input
