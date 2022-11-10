@@ -2,9 +2,15 @@
 
 ## clint side github code link
 
+https://github.com/Porgramming-Hero-web-course/b6a11-service-review-client-side-sayeedhossain2
+
 ## server side github code link
 
+https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-sayeedhossain2
+
 ## live side link
+
+https://sports-photographer-efd3c.web.app/
 
 ### project details
 

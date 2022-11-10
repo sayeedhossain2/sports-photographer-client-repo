@@ -30,13 +30,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/myreview",
-        element: <MyReview></MyReview>,
+        element: (
+          <PrivateRoute>
+            <MyReview></MyReview>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/updatepage/:id",
         element: <UpdatePage></UpdatePage>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/usersReview/${params.id}`),
+          fetch(
+            `https://sports-photographer-server.vercel.app/usersReview/${params.id}`
+          ),
       },
       {
         path: "/addservice",
@@ -58,7 +64,9 @@ const router = createBrowserRouter([
         path: "/singleService/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singleService/${params.id}`),
+          fetch(
+            `https://sports-photographer-server.vercel.app/singleService/${params.id}`
+          ),
       },
       {
         path: "*",

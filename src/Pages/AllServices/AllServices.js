@@ -10,7 +10,7 @@ const AllServices = () => {
   const [allpackages, setAllpackages] = useState([]);
   // console.log(allpackages);
   useEffect(() => {
-    fetch("http://localhost:5000/allService")
+    fetch("https://sports-photographer-server.vercel.app/allService")
       .then((res) => res.json())
       .then((data) => setAllpackages(data));
   }, []);

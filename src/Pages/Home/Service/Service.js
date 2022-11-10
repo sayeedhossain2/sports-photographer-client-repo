@@ -9,7 +9,7 @@ const Service = () => {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/service")
+    fetch("https://sports-photographer-server.vercel.app/service")
       .then((res) => res.json())
       .then((data) => setPackages(data));
   }, []);

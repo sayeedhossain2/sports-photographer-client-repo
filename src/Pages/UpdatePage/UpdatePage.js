@@ -11,13 +11,16 @@ const UpdatePage = () => {
   const handleUpdateService = (event) => {
     event.preventDefault();
     console.log(update);
-    fetch(`http://localhost:5000/usersReview/${storedReviewer._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(update),
-    })
+    fetch(
+      `https://sports-photographer-server.vercel.app/usersReview/${storedReviewer._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(update),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -24,7 +24,7 @@ const AddService = () => {
       img: image,
     };
     //  emplement Post method and data data send backend
-    fetch("http://localhost:5000/AddService", {
+    fetch("https://sports-photographer-server.vercel.app/AddService", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -14,21 +14,26 @@ const MyReview = () => {
   //   console.log(reviewPerson);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/userReview?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("sportsToken")}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          logout();
+    if (user?.email) {
+      fetch(
+        `https://sports-photographer-server.vercel.app/userReview?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("sportsToken")}`,
+          },
         }
-        return res.json();
-      })
-      .then((data) => {
-        // console.log("recive", data);
-        setReviewPerson(data);
-      });
+      )
+        .then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            logout();
+          }
+          return res.json();
+        })
+        .then((data) => {
+          // console.log("recive", data);
+          setReviewPerson(data);
+        });
+    }
   }, [user?.email]);
 
   const handleDelete = (reviewsPerson) => {
@@ -37,9 +42,12 @@ const MyReview = () => {
     );
 
     if (agree) {
-      fetch(`http://localhost:5000/reviewUser/${reviewsPerson._id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://sports-photographer-server.vercel.app/reviewUser/${reviewsPerson._id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

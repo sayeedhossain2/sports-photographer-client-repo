@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyADhyXhmB2PtSFZmmZ23oJDGNsqOhobVMA",
-  authDomain: "sports-photographer-efd3c.firebaseapp.com",
-  projectId: "sports-photographer-efd3c",
-  storageBucket: "sports-photographer-efd3c.appspot.com",
-  messagingSenderId: "403038810641",
-  appId: "1:403038810641:web:87b6f8abd9c69d0281b7b0",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
