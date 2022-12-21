@@ -38,7 +38,7 @@ const Blog = () => {
             (some rarely found in other NoSQL). InfinityDB and Amazon’s DynamoDB
             implement two other key-value stores. Columnar stores like
             Cassandra, MariaDB, and Scylla scale well horizontally, and popular
-            graph databases include ArangoDB, InfiniteGraph, and Neo4j.
+            graph databases include ArangoDB, InfiniteGraph, and Neo4jj.
           </p>
         </div>
       </div>

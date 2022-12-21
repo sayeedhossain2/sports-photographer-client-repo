@@ -3,6 +3,7 @@ import { Dna, Vortex } from "react-loader-spinner";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import useTitle from "../../hooks/useTitle";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const { login, loading } = useContext(AuthContext);
@@ -66,6 +67,7 @@ const Login = () => {
         form.reset();
         setSuccessfully("User Login Successfully");
         setError("");
+        toast("Wow Login successfully");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -83,28 +85,6 @@ const Login = () => {
     wrapperClass="vortex-wrapper"
     colors={["red", "green", "blue", "yellow", "orange", "purple"]}
   />;
-
-  // login start
-
-  // const handleWithGoogle = () => {
-  //   userLoginGoogle(googleProvider)
-  //     .then((result) => {
-  //       const credential = GoogleAuthProvider.credentialFromResult(result);
-  //       const token = credential.accessToken;
-  //       const user = result.user;
-  //       console.log(user);
-  //       setError("");
-  //       setSuccessfully("User Created Successfully");
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.log(errorMessage);
-  //       setError(errorMessage);
-  //       setSuccessfully("");
-  //     });
-  // };
-  // login end
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -145,6 +125,7 @@ const Login = () => {
             <div className="form-control mt-6">
               <input className="btn btn-primary" type="submit" value="Login" />
             </div>
+            <ToastContainer />
             <p>
               Don't have account,please
               <Link className="btn btn-active btn-link" to="/signup">

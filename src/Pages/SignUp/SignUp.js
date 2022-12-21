@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 import useTitle from "../../hooks/useTitle";
 import { Dna } from "react-loader-spinner";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignUp = () => {
   const { createUser, userLoginGoogle, loading } = useContext(AuthContext);
@@ -25,6 +26,7 @@ const SignUp = () => {
         form.reset();
         setSuccessfully("User Created Successfully");
         setError("");
+        toast("Wow signup successfully!");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -43,6 +45,7 @@ const SignUp = () => {
         console.log(user);
         setError("");
         setSuccessfully("User Created Successfully");
+        toast("Wow signup successfully");
 
         const currentUser = {
           email: user.email,
@@ -135,6 +138,7 @@ const SignUp = () => {
                 type="submit"
                 value="Sign Up"
               />
+              <ToastContainer />
             </div>
             <p>
               All ready have an account, please{" "}
